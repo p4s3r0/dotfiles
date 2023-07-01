@@ -68,7 +68,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_t), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_Return     ), spawn "dmenu_run")
+    --, ((modm,               xK_Return     ), spawn "dmenu_run")
 
     -- launch gmrun
     --, ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -260,6 +260,8 @@ myStartupHook = do
     spawnOnce "xinput set-prop 13 'libinput Accel Speed' -0.9"
     spawnOnce "feh --bg-scale ~/Downloads/background.png"
     spawnOnce "picom --config ~/.picom/picom.conf -b"
+    spawnOnce "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+    spawnOnce "bash ~/.config/polybar/launch.sh --docky"
     spawnOnce "ulauncher &"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -291,7 +293,7 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = spacingRaw False (Border 5 5 5 5) True (Border 5 5 5 5) True $ gaps [(U,5), (R,5), (D,5), (L,5)] $ Tall 1 (3/100) (1/2) ||| Full, --myLayout,
+        layoutHook         = spacingRaw False (Border 12 5 5 5) True (Border 12 5 5 5) True $ gaps [(U,12), (R,5), (D,5), (L,5)] $ Tall 1 (3/100) (1/2) ||| Full, --myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
